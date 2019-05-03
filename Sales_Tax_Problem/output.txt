@@ -1,0 +1,31 @@
+Name of the product: Chocolates
+Imported?: yes
+Exempted from sales tax?: yes
+Price: 120
+Do you want to add more items to the list(y/n): y
+
+Name of the product: Potato Chips
+Imported?: yes
+Exempted from sales tax?: no
+Price: 100
+Do you want to add more items to the list(y/n): y
+
+Name of the product: Perfume
+Imported?: no
+Exempted from sales tax?: yes
+Price: 150
+Do you want to add more items to the list(y/n): y
+
+Name of the product: Watch
+Imported?: no
+Exempted from sales tax?: no
+Price: 300
+Do you want to add more items to the list(y/n): n
+
+Product_Name    Price    Sales_tax      Import_duty     Total_Price
+Chocolates      120      0.0            6.0             126.0
+Potato Chips    100      10.0           5.0             115.0
+Perfume         150      0.0            0.0             150.0
+Watch           300      30.0           0.0             330.0
+-------------------------------------------------------------------
+Total Sum of Products is: 721

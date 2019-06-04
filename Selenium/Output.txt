@@ -1,4 +1,4 @@
-C:\Users\Tanshika\Desktop\ruby>ruby seldemo2.rb
+C:\Users\Tanshika\Desktop\ruby>ruby seldemo.rb
 
 DevTools listening on ws://127.0.0.1:60812/devtools/browser/2167f9f9-521e-4155-9add-5c5de3110664
 Page title is Vinsol - Google Search

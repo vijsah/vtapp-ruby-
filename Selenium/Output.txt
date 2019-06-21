@@ -1,4 +1,4 @@
-C:\Users\Tanshika\Desktop\ruby>ruby seldemo.rb
+C:\Users\Tanshika\Desktop\ruby>ruby selenium_1.rb
 
-DevTools listening on ws://127.0.0.1:60812/devtools/browser/2167f9f9-521e-4155-9add-5c5de3110664
-Page title is Vinsol - Google Search
+DevTools listening on ws://127.0.0.1:53391/devtools/browser/bcdaaf15-3692-4e59-950e-f1edc5e26493
+Test Successful

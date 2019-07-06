@@ -1,0 +1,48 @@
+DevTools listening on ws://127.0.0.1:60547/devtools/browser/ed53eb60-b5d6-4e55-b601-52c53813d492
+Feature: Sign Up Functionality Feature
+
+  @Valid
+  Scenario Outline: Valid Users                                                                   # features/signup_feature.feature:4
+    Given User clicks Sign up                                                                     # features/signup_feature.feature:5
+    When I enter <emailid> <firstname> <lastname> <companyname> <password> and <confirm_password> # features/signup_feature.feature:6
+    Then I check for <firstname> on home                                                          # features/signup_feature.feature:7
+
+    Examples:
+      | emailid                     | firstname | lastname | companyname | password | confirm_password |
+      | tans-arora@mail.com         | Tanshika  | Arora    | Vinsol      | abcdef   | abcdef           |  Test Successful
+      | tans.arora@mail.com         | Tanshika  | Arora    | Vinsol      | abcdef   | abcdef           |  Test Successful
+      | tans@mail.com               | Tanshika  | Arora    | Vinsol      | abcdef   | abcdef           |  Test Successful
+      | tans_arora@mail.com         | Tanshika  | Arora    | Vinsol      | abcdef   | abcdef           |  Test Successful
+      | tans.arora@mail.cc          | Tanshika  | Arora    | Vinsol      | abcdef   | abcdef           |  Test Successful
+      | tans.arora@mail-archive.com | Tanshika  | Arora    | Vinsol      | abcdef   | abcdef           |  Test Successful
+      | tans.arora@mail.org         | Tanshika  | Arora    | Vinsol      | password | password         |  Test Successful
+
+7 scenarios (7 passed)
+21 steps (21 passed)
+0m45.360s
+
+C:\Users\Tanshika\Desktop\cucumber-test>cucumber --tags @Invalid
+*** WARNING: You must use ANSICON 1.31 or higher (https://github.com/adoxa/ansicon/) to get coloured output on Windows
+
+DevTools listening on ws://127.0.0.1:60640/devtools/browser/57d1280a-5c8d-433b-b48f-5cd81bd2d9d0
+Feature: Sign Up Functionality Feature
+
+  @Invalid
+  Scenario Outline: Invalid Users                                                                 # features/signup_feature.feature:20
+    Given User clicks Sign up                                                                     # features/signup_feature.feature:21
+    When I enter <emailid> <firstname> <lastname> <companyname> <password> and <confirm_password> # features/signup_feature.feature:22
+    Then Error is Displayed if invalid credentials are entered                                    # features/signup_feature.feature:23
+
+    Examples:
+      | emailid              | firstname | lastname | companyname | password | confirm_password |
+      |                      |           |          |             |          |                  |  Required, Required, Required, Required, Required, Required
+      | tanshika@vinsol.com  | Tanshika  | Arora    | Vinsol      | pass123  | pass123          |  already exists
+      | tvin@fg.com          | Tanshika  | Arora    | Vinsol      | 123456   | 12345            |  doesn't match Password
+      |                      | Tanshika  | Arora    |             |          |                  |  Required, Required, Required, Required
+      | tanshika@com         | Tanshika  | Arora    | Vinsol      | 123456   | 123456           |  Is invalid
+      | .tanshika@domain.com | Tanshika  | Arora    | Vinsol      | 123456   | 123456           |  Is invalid
+      | email@gmail.com      | Tanshika  | Arora    | Vinsol      | 123      | 123              |  Minimum 6 characters
+
+7 scenarios (7 passed)
+21 steps (21 passed)
+1m52.699s

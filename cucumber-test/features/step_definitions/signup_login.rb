@@ -68,19 +68,19 @@ Then(/^User should be successfully logged in$/) do
 end
 
 Then(/^Error should be displayed for the corresponding fields (.*) in login form$/) do |field_name|
-	#sleep 10
+	sleep 10
 	case field_name
-			when "data in all fields required"
-				expect(@login.email_error).to include('Required') or
-				expect(@login.password_error).to include('Required')
+	when "data in all fields required"
+		expect(@login.email_error).to include('Required') or
+		expect(@login.password_error).to include('Required')
 
-			when "invalid_email"
-				expect(@login.email_error).to include('Is invalid')
+	when "invalid_email"
+		expect(@login.email_error).to include('Is invalid')
 
-			when "email doesnot exist"
-				expect(@login.email_error).to include('Email does not exist')
+	when "email doesnot exist"
+		expect(@login.email_error).to include('Email does not exist')
 
-			when "incorrect password"
-				expect(@login.password_error).to include('Invalid password')
-		end
+	when "incorrect password"
+		expect(@login.password_error).to include('Invalid password')
+	end
 end

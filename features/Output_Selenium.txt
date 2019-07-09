@@ -1,0 +1,72 @@
+C:\Users\Tanshika\Desktop>cucumber
+*** WARNING: You must use ANSICON 1.31 or higher (https://github.com/adoxa/ansicon/) to get coloured output on Windows
+
+DevTools listening on ws://127.0.0.1:63702/devtools/browser/cfbfae43-9abb-4fa6-a629-e6e03b0fe4cf
+Feature: SignUp and Login Functionality Feature
+
+  @SignUp_Valid
+  Scenario Outline: User registering on website with valid credentials                                                                     # features/feature_file.feature:4
+    Given User clicks Sign up on the home page of the website                                                                              # features/feature_file.feature:5
+    When User enters following details in the signup form: <emailid> <firstname> <lastname> <companyname> <password> and <confirmpassword> # features/feature_file.feature:6
+    And User Clicks the SignUp Button                                                                                                      # features/feature_file.feature:7
+    Then User should be successfully registered and its first name <firstname> should appear on home                                       # features/feature_file.feature:8
+
+    Examples:
+      | emailid                        | firstname | lastname | companyname | password | confirmpassword |
+      | tannaaa-arora@mail.com         | Tanshika  | Arora    | Vinsol      | abcdef   | abcdef          |  Successful Signup
+      | tannaaa.arora@mail.com         | Tanshika  | Arora    | Vinsol      | abcdef   | abcdef          |  Successful Signup
+      | tannaaa@mail.com               | Tanshika  | Arora    | Vinsol      | abcdef   | abcdef          |  Successful Signup
+      | tannaaa_arora@mail.com         | Tanshika  | Arora    | Vinsol      | abcdef   | abcdef          |  Successful Signup
+      | tannaaa.arora@mail.cc          | Tanshika  | Arora    | Vinsol      | abcdef   | abcdef          |  Successful Signup
+      | tannaaa.arora@mail-archive.com | Tanshika  | Arora    | Vinsol      | abcdef   | abcdef          |  Successful Signup
+      | tannaaa.arora@mail.org         | Tanshika  | Arora    | Vinsol      | password | password        |  Successful Signup
+
+  @SignUp_Invalid
+  Scenario Outline: User registering on website with Invalid credentials                                                                   # features/feature_file.feature:21
+    Given User clicks Sign up on the home page of the website                                                                              # features/feature_file.feature:22
+    When User enters following details in the signup form: <emailid> <firstname> <lastname> <companyname> <password> and <confirmpassword> # features/feature_file.feature:23
+    And User Clicks the SignUp Button                                                                                                      # features/feature_file.feature:24
+    Then Error should be displayed for the corresponding fields <field_name> in signup form                                                # features/feature_file.feature:25
+
+    Examples:
+      | emailid              | firstname | lastname | companyname | password | confirmpassword | field_name                  |
+      | tanshika@vinsol.com  | Tanshika  | Arora    | Vinsol      | pass123  | pass123         | email_exist                 |
+      | tvin@fg.com          | Tanshika  | Arora    | Vinsol      | 123456   | 12345           | password_mismatch           |
+      |                      |           |          |             |          |                 | data in all fields required |
+      | tanshika@com         | Tanshika  | Arora    | Vinsol      | 123456   | 123456          | invalid_email               |
+      | .tanshika@domain.com | Tanshika  | Arora    | Vinsol      | 123456   | 123456          | invalid_email               |
+      | email@gmail.com      | Tanshika  | Arora    | Vinsol      | 123      | 123             | password_min_char           |
+
+  @Login_Valid
+  Scenario Outline: User login with valid credentials                              # features/feature_file.feature:37
+    Given User Clicks Login link on the homepage of website                        # features/feature_file.feature:38
+    When User enters following details in the login form: <emailid> and <password> # features/feature_file.feature:39
+    And User Clicks Login button                                                   # features/feature_file.feature:40
+    Then User should be successfully logged in                                     # features/feature_file.feature:41
+
+    Examples:
+      | emailid                       | password |
+      | tanshi.arora@mail.com         | abcdef   |  Successful Login
+      | tanshi@mail.com               | abcdef   |  Successful Login
+      | tanshi_arora@mail.com         | abcdef   |  Successful Login
+      | tanshi.arora@mail.cc          | abcdef   |  Successful Login
+      | tanshi.arora@mail-archive.com | abcdef   |  Successful Login
+      | tanshi.arora@mail.org         | password |  Successful Login
+
+  @Login_Invalid
+  Scenario Outline: User trying to login with invalid credentials                          # features/feature_file.feature:53
+    Given User Clicks Login link on the homepage of website                                # features/feature_file.feature:54
+    When User enters following details in the login form: <emailid> and <password>         # features/feature_file.feature:55
+    And User Clicks Login button                                                           # features/feature_file.feature:56
+    Then Error should be displayed for the corresponding fields <field_name> in login form # features/feature_file.feature:57
+
+    Examples:
+      | emailid             | password | field_name                  |
+      |                     |          | data in all fields required |
+      | tanshika@com        | tanshika | invalid email               |
+      | tanshika@vinsol.com | password | incorrect password          |
+      | tanshika@g.corp     | tanshika | email doesnot exist         |
+
+23 scenarios (23 passed)
+92 steps (92 passed)
+4m6.987s

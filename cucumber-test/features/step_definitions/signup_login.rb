@@ -42,12 +42,6 @@ Then(/^Error should be displayed for the corresponding fields (.*) in signup for
 
 	when "password_min_char"	
 		expect(@signup.password_error).to include('Minimum 6 characters')
-
-	when "email doesnot exist"
-		expect(@signup.email_error).to include('Email does not exist')
-
-	when "incorrect password"
-		expect(@signup.password_error).to include('Invalid password')
 	end
 end
 

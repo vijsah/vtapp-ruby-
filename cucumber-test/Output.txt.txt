@@ -1,0 +1,96 @@
+@SignUp_Valid
+  Scenario Outline: User registering on website with valid credentials                                                                      # features/signup_feature.feature:4
+    Given User clicks Sign up on the home page of the website                                                                               # features/signup_feature.feature:5
+    When User enters following details in the signup form: <emailid> <firstname> <lastname> <companyname> <password> and <confirm_password> # features/signup_feature.feature:6
+    And User Clicks the SignUp Button                                                                                                       # features/signup_feature.feature:7
+    Then User should be successfully registered and its first name <firstname> should appear on home                                        # features/signup_feature.feature:8
+
+    Examples:
+      | emailid                      | firstname | lastname | companyname | password | confirm_password |
+      | tanna-arora@mail.com         | Tanshika  | Arora    | Vinsol      | abcdef   | abcdef           |  Successful signup
+      | tanna.arora@mail.com         | Tanshika  | Arora    | Vinsol      | abcdef   | abcdef           |  Successful signup
+      | tanna@mail.com               | Tanshika  | Arora    | Vinsol      | abcdef   | abcdef           |  Successful signup
+      | tanna_arora@mail.com         | Tanshika  | Arora    | Vinsol      | abcdef   | abcdef           |  Successful signup
+      | tanna.arora@mail.cc          | Tanshika  | Arora    | Vinsol      | abcdef   | abcdef           |  Successful signup
+      | tanna.arora@mail-archive.com | Tanshika  | Arora    | Vinsol      | abcdef   | abcdef           |  Successful signup
+      | tanna.arora@mail.org         | Tanshika  | Arora    | Vinsol      | password | password         |  Successful signup
+
+7 scenarios (7 passed)
+28 steps (28 passed)
+0m59.861s
+
+C:\Users\Tanshika\Desktop\vtapp-ruby-\cucumber-test>cucumber --tags @SignUp_Invalid
+*** WARNING: You must use ANSICON 1.31 or higher (https://github.com/adoxa/ansicon/) to get coloured output on Windows
+
+DevTools listening on ws://127.0.0.1:60277/devtools/browser/4c035b6f-e4f0-473f-85d0-51caca3b3b06
+Feature: SignUp and Login Functionality Feature
+
+  @SignUp_Invalid
+  Scenario Outline: User registering on website with Invalid credentials                                                                    # features/signup_feature.feature:21
+    Given User clicks Sign up on the home page of the website                                                                               # features/signup_feature.feature:22
+    When User enters following details in the signup form: <emailid> <firstname> <lastname> <companyname> <password> and <confirm_password> # features/signup_feature.feature:23
+    And User Clicks the SignUp Button                                                                                                       # features/signup_feature.feature:24
+    Then Error should be displayed for the corresponding fields <field_name> in signup form                                                 # features/signup_feature.feature:25
+
+    Examples:
+      | emailid              | firstname | lastname | companyname | password | confirm_password | field_name                  |
+      | tanshika@vinsol.com  | Tanshika  | Arora    | Vinsol      | pass123  | pass123          | email_exist                 |
+      | tvin@fg.com          | Tanshika  | Arora    | Vinsol      | 123456   | 12345            | password_mismatch           |
+      |                      |           |          |             |          |                  | data in all fields required |
+      | tanshika@com         | Tanshika  | Arora    | Vinsol      | 123456   | 123456           | invalid_email               |
+      | .tanshika@domain.com | Tanshika  | Arora    | Vinsol      | 123456   | 123456           | invalid_email               |
+      | email@gmail.com      | Tanshika  | Arora    | Vinsol      | 123      | 123              | password_min_char           |
+
+6 scenarios (6 passed)
+24 steps (24 passed)
+1m47.094s
+
+C:\Users\Tanshika\Desktop\vtapp-ruby-\cucumber-test>cucumber --tags @Login_Valid
+*** WARNING: You must use ANSICON 1.31 or higher (https://github.com/adoxa/ansicon/) to get coloured output on Windows
+
+DevTools listening on ws://127.0.0.1:60407/devtools/browser/0a4ca98b-983c-49a5-9408-d805ba954765
+Feature: SignUp and Login Functionality Feature
+
+  @Login_Valid
+  Scenario Outline: User login with valid credentials                              # features/signup_feature.feature:37
+    Given User Clicks Login link on the homepage of website                        # features/signup_feature.feature:38
+    When User enters following details in the login form: <emailid> and <password> # features/signup_feature.feature:39
+    And User Clicks Login button                                                   # features/signup_feature.feature:40
+    Then User should be successfully logged in                                     # features/signup_feature.feature:41
+
+    Examples:
+      | emailid                       | password |
+      | tanshi.arora@mail.com         | abcdef   |  Successful Login
+      | tanshi@mail.com               | abcdef   |  Successful Login
+      | tanshi_arora@mail.com         | abcdef   |  Successful Login
+      | tanshi.arora@mail.cc          | abcdef   |  Successful Login
+      | tanshi.arora@mail-archive.com | abcdef   |  Successful Login
+      | tanshi.arora@mail.org         | password |  Successful Login
+
+6 scenarios (6 passed)
+24 steps (24 passed)
+0m44.960s
+
+C:\Users\Tanshika\Desktop\vtapp-ruby-\cucumber-test>cucumber --tags @Login_Invalid
+*** WARNING: You must use ANSICON 1.31 or higher (https://github.com/adoxa/ansicon/) to get coloured output on Windows
+
+DevTools listening on ws://127.0.0.1:60587/devtools/browser/3806c487-c0c0-41cb-8e18-6bafd24f683d
+Feature: SignUp and Login Functionality Feature
+
+  @Login_Invalid
+  Scenario Outline: User trying to login with invalid credentials                          # features/signup_feature.feature:53
+    Given User Clicks Login link on the homepage of website                                # features/signup_feature.feature:54
+    When User enters following details in the login form: <emailid> and <password>         # features/signup_feature.feature:55
+    And User Clicks Login button                                                           # features/signup_feature.feature:56
+    Then Error should be displayed for the corresponding fields <field_name> in login form # features/signup_feature.feature:57
+
+    Examples:
+      | emailid             | password | field_name                  |
+      |                     |          | data in all fields required |
+      | tanshika@com        | tanshika | invalid email               |
+      | tanshika@vinsol.com | password | incorrect password          |
+      | tanshika@g.corp     | tanshika | email doesnot exist         |
+
+4 scenarios (4 passed)
+16 steps (16 passed)
+0m31.446s
